@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  # This workflow contains a single job called "build"
+    container:
+      image: aakp10/latex:latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Build LaTeX
+        run: pdflatex *.tex && pdflatex *.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with: 
+          name: acmart.pdf
+          path: ./acmart.pdf
