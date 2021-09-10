@@ -14,3 +14,8 @@ jobs:
           sudo apt install texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-full  xzdec -y
       - name: Build LaTeX
         run: pdflatex *.tex && pdflatex *.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with: 
+          name: acmart.pdf
+          path: ./acmart.pdf
