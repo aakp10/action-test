@@ -1,0 +1,16 @@
+name: Build on Ubuntu
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install latex
+        run: |
+          sudo apt-get update
+          sudo apt upgrade -y
+          sudo apt install texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-full  xzdec -y
+      - name: Build LaTeX
+        run: pdflatex *.tex && pdflatex *.tex
